@@ -1,0 +1,17 @@
+Model: HuMo 17B (human-centric audio/image/text-driven video generation)
+Version: humo_17B_fp8_e4m3fn (native ComfyUI support since v0.3.60)
+Matches loaded weights: diffusion_models/humo_17B_fp8_e4m3fn.safetensors, diffusion_models/Wan2_1-HuMo-17B_Q5_K_M.gguf, diffusion_models/Wan2_1-HuMo-14B_fp8_e4m3fn_scaled_KJ.safetensors, diffusion_models/humo_1.7B_fp16.safetensors
+Official Source: https://docs.comfy.org/changelog (native support announcement) / https://blog.comfy.org/p/humo-and-chroma1-radiance-support
+Direct JSON: https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/video_humo.json
+Fetched: 2026-06-30
+Node Count: 20
+Link Count: 20
+Last Node ID: 75
+Last Link ID: 147
+Workflow Type: Image+Audio+Text -to-Video (lip-synced, audio-driven motion)
+Output Nodes: ["SaveVideo"]
+Key Nodes: UNETLoader (humo_17B_fp8_e4m3fn), LoraLoaderModelOnly (lightx2v distill LoRA), CLIPLoader (umt5_xxl), VAELoader (wan_2.1_vae), AudioEncoderLoader (whisper_large_v3), WanHuMoImageToVideo, ModelSamplingSD3, KSampler, VAEDecode, CreateVideo
+VRAM Estimate (RTX 5080): 10-14 GB (fp8 17B variant)
+Quality Notes: THIS IS THE ACTUAL VIDEO MODEL WIRED INTO the OTR sci-fi production workflow (otr_scifi_16gb_full.json uses "humo_14B_169" / "humo_1.7B" as character_video_model and render engine) -- was missing from the original 5-model baseline scope entirely. Supports 480p (832x480) and 720p (1280x720). This official template targets the 17B checkpoint; the OTR pipeline also references 14B and 1.7B variants which are smaller checkpoints for the same WanHuMoImageToVideo node graph (swap the UNETLoader filename).
+Known Limitations: Requires a Whisper audio encoder in addition to the base Wan-style UMT5 text encoder and VAE.
+Verified: NO — pending load test in ComfyUI (Phase 3, next window)

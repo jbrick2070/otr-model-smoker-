@@ -1,0 +1,16 @@
+Model: HunyuanWorld-Mirror (Tencent universal 3D world reconstruction, image sequence -> point cloud/Gaussians/depth/normals/camera params)
+Version: HY-WorldMirror-2.0 (1B params)
+Matches loaded weights: WorldMirror-V2/HY-WorldMirror-2.0/model.safetensors
+Official Source (model): https://huggingface.co/tencent/HunyuanWorld-Mirror
+Official Source (ComfyUI node pack): https://github.com/cedarconnor/ComfyUI-HunyuanWorld-Mirror (community wrapper -- no native ComfyUI support exists for this model as of fetch date)
+Direct JSON: NONE AVAILABLE -- this repo does not ship an example_workflows/*.json file (only PNG demo images in examples/). The graph below was hand-transcribed from the "Basic 3D Reconstruction" pipeline documented in the repo's own README.
+Fetched: 2026-06-30
+Node Count: 5 (hand-built minimal graph)
+Link Count: 4
+Workflow Type: Image-sequence-to-3D (point cloud / depth / normals / camera poses / 3D Gaussians in one forward pass)
+Output Nodes: ["SavePointCloud"] (repo also offers Save3DGaussians, SaveDepthMap, SaveCameraParams, SaveCOLMAPReconstruction as alternate terminal nodes)
+Key Nodes: LoadImage, PreprocessImagesForHWM, LoadHunyuanWorldMirrorModel, HWMInference, SavePointCloud
+VRAM Estimate (RTX 5080): 4-16 GB depending on frame count (single image ~4GB, 8-24 frames recommended sweet spot ~8-12GB)
+Quality Notes: This is a DIFFERENT 3D model from Hunyuan3D-2 (already baselined) -- Hunyuan3D-2 goes single-image-to-mesh via diffusion, while HunyuanWorld-Mirror is a feed-forward multi-view geometric reconstruction model (more like photogrammetry/SfM than generative mesh synthesis). Found loaded on disk under WorldMirror-V2/ but entirely missing from the original 5-model baseline scope.
+Known Limitations: No native ComfyUI support -- requires this specific community custom node pack. No official example workflow JSON exists to fetch verbatim; this baseline is a best-effort transcription of the documented node graph, NOT a downloaded official file. Flag for manual verification against the actual installed node pack's parameter names once loaded in ComfyUI.
+Verified: NO — pending load test in ComfyUI (Phase 3, next window). EXTRA CAUTION: also pending confirmation that node names/widget order match the installed version of cedarconnor/ComfyUI-HunyuanWorld-Mirror exactly, since this JSON was hand-built rather than fetched.

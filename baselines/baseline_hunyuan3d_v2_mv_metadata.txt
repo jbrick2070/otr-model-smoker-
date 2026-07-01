@@ -1,0 +1,17 @@
+Model: HunyuanVideo 3D-DIT v2 (single-view, non-multiview variant)
+Version: hunyuan3d-dit-v2-0
+Official Source: https://docs.comfy.org/tutorials/3d/hunyuan3D-2
+Extracted from: EXIF metadata embedded in hunyuan3d-non-multiview-train.webp (official example image)
+Fetched: 2026-06-30
+Node Count: 11
+Link Count: 12
+Last Node ID: 80
+Last Link ID: 166
+Workflow Type: Image-to-Mesh (single view, no texture/multiview)
+Input Nodes: ["LoadImage"]
+Output Nodes: ["SaveGLB"]
+Key Nodes: ImageOnlyCheckpointLoader, Hunyuan3Dv2Conditioning, EmptyLatentHunyuan3Dv2, KSampler, VAEDecodeHunyuan3D, VoxelToMeshBasic
+VRAM Estimate (RTX 5080): 6-8 GB (shape generation only, no texture stage)
+Quality Notes: Note this is the non-multiview single-image variant per handoff spec; ComfyUI natively supports Hunyuan3D-2mv shape generation but not texture/material generation. Node count (11) is close to the ~5-6 node estimate in the spec once you account for stock ComfyUI's split conditioning/latent/sampler/decode nodes.
+Known Limitations: Native ComfyUI support does not include texture/material baking (shape only).
+Verified: NO — pending load test in ComfyUI (Phase 3, next window)

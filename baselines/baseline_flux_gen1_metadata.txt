@@ -1,0 +1,16 @@
+Model: FLUX Gen1 (Flux.1 Schnell, FP8 checkpoint version)
+Version: flux1-schnell-fp8
+Official Source: https://docs.comfy.org/tutorials/flux/flux-1-text-to-image
+Extracted from: tEXt metadata embedded in flux_schnell_fp8.png (official example image)
+Fetched: 2026-06-30
+Node Count: 10
+Link Count: 10
+Last Node ID: 42
+Last Link ID: 63
+Workflow Type: Text-to-Image
+Output Nodes: ["SaveImage"]
+Key Nodes: CheckpointLoaderSimple (fp8), CLIPTextEncode, KSampler, VAEDecode, EmptyLatentImage
+VRAM Estimate (RTX 5080): 7-9 GB (fp8 checkpoint variant)
+Quality Notes: No negative prompt needed (Flux doesn't require one). Chose the FP8 single-checkpoint version over the full Dev/Schnell split-loader version since it's the simplest official minimal path (one model file vs. four).
+Known Limitations: None observed. All node types are stock ComfyUI.
+Verified: NO — pending load test in ComfyUI (Phase 3, next window)

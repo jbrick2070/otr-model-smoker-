@@ -1,0 +1,12 @@
+Model: LTX 2.3 22B (dev checkpoint, text-to-video)
+Version: ltx-2.3-22b-dev (native ComfyUI support)
+Matches loaded weights: checkpoints/ltx-2.3-22b-dev.safetensors, unet/ltx-2.3-22b-dev-Q3_K_M.gguf, unet/ltx-2.3-22b-dev-Q4_K_S.gguf, unet/distilled-1.1/*.gguf, loras/ltxv/ltx2/ltx-2.3-22b-distilled-lora-384-1.1.safetensors, vae/ltx-2.3-22b-dev_video_vae.safetensors + _audio_vae.safetensors, text_encoders/ltx-2.3-22b-dev_embeddings_connectors.safetensors
+Official Source: https://docs.comfy.org/tutorials/video/ltx/ltx-2-3
+Direct JSON: https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/video_ltx2_3_t2v.json
+Fetched: 2026-06-30
+Node Count (top-level graph): 3 (SaveVideo, MarkdownNote, and a single Subgraph node)
+Actual Node Count (inside subgraph "Text to Video (LTX-2.3)"): 51
+Workflow Type: Text-to-Video (audio+video, 22B dev model)
+Quality Notes: This is a completely different, much larger generation (LTX 2.3, 22B params) than the LTX 2b v0.9 already baselined (baseline_ltx_2b_v0.9.json) -- both are present on disk. The official ComfyUI template for LTX-2.3 uses ComfyUI's newer "subgraph" nodes-2.0 feature, so the top-level workflow JSON only shows 3 nodes; the real ~51-node pipeline (CLIP/T5, VAE encode/decode, dual video+audio VAE, latent upscaler, sampler cascade) lives nested under definitions.subgraphs. Do not judge complexity by the top-level node count alone.
+Known Limitations: Requires gemma_3_12B_it text encoder (not T5) -- a much heavier text encoder than LTX 0.9's t5xxl. fp8 checkpoint variant also available for lower VRAM.
+Verified: NO — pending load test in ComfyUI (Phase 3, next window)

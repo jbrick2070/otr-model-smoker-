@@ -1,0 +1,15 @@
+Model: Wan-Move (motion-controllable image-to-video)
+Version: Wan21-WanMove_fp8_scaled_e4m3fn_KJ (480p)
+Official Source: https://docs.comfy.org/tutorials/video/wan/wan-move
+Direct JSON: https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/video_wanmove_480p.json
+Fetched: 2026-06-30
+Node Count: 16
+Link Count: 13
+Last Node ID: 268
+Last Link ID: 616
+Workflow Type: Image-to-Video (point-trajectory motion control)
+Output Nodes: ["SaveVideo", "SaveVideo", "PreviewImage"]
+VRAM Estimate (RTX 5080): 8-10 GB
+Quality Notes: Generates 5-second 480p video with fine-grained point-level motion control via latent trajectory guidance, integrated into Wan-I2V-14B with no architecture changes. Node count (16) is higher than the ~6-7 node estimate in the spec because the official template includes both a distillation LoRA loader and dual save/preview outputs.
+Known Limitations: Requires lightx2v step-distill LoRA + umt5/clip_vision/vae support files in addition to the diffusion model.
+Verified: NO — pending load test in ComfyUI (Phase 3, next window)

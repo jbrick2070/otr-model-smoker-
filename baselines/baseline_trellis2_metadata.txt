@@ -1,0 +1,16 @@
+Model: Trellis 2 (Microsoft TRELLIS.2, mesh-only / no texturing)
+Version: MeshOnly (current, not HighQuality/LowPoly/MultiView/Pixal3D variants)
+Official Source: https://github.com/visualbruno/ComfyUI-Trellis2
+Direct JSON: https://raw.githubusercontent.com/visualbruno/ComfyUI-Trellis2/main/example_workflows/MeshOnly.json
+Fetched: 2026-06-30
+Node Count: 18
+Link Count: 27
+Last Node ID: 262
+Last Link ID: 493
+Workflow Type: Image-to-Mesh (untextured, single reconstruction pass)
+Output Nodes: ["Preview3D"] (plus Trellis2ExportMesh node for GLB export)
+Key Nodes: Trellis2LoadModel, Trellis2LoadImageWithTransparency, Trellis2PreProcessImage, Trellis2SparseGenerator, Trellis2ShapeGenerator/ShapeCascadeGenerator, Trellis2ImageCondGenerator, Trellis2DecodeLatents, Trellis2MeshWithVoxelToTrimesh, Trellis2ReconstructMeshWithQuad, fill-holes/simplify passes, Trellis2ExportMesh
+VRAM Estimate (RTX 5080): 16-24 GB
+Quality Notes: This is REQUIRES CUSTOM NODES (ComfyUI-Trellis2 wrapper) — not stock ComfyUI, per the official source's own repo (documented exception per handoff instructions). "MeshOnly.json" is the simplest of 15 example workflows in the repo (others add texturing, multiview, refinement, or Pixal3D support). At 18 nodes it's well above the ~7-8 node estimate in the spec — Trellis2 is architecturally more complex than a minimal baseline (separate sparse/shape/decode/reconstruct/cleanup stages), and this repo does not ship anything simpler.
+Known Limitations: Requires facebook/dinov3-vitl16-pretrain-lvd1689m model and custom compiled wheels (cumesh, nvdiffrast, o_voxel, flex_gemm) — not a plug-and-play stock workflow. Flagged as lowest priority per spec.
+Verified: NO — pending load test in ComfyUI (Phase 3, next window)
