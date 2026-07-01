@@ -32,12 +32,12 @@
 - **Baseline Workflow:** https://docs.comfy.org/tutorials/flux/flux-1-text-to-image
 - **In OTR:** Already used for FLUX image generation
 
-### Wan (Motion Video) — **NOT Downloaded**
-- **VRAM:** 8–10 GB
+### Wan (Motion Video) — **STALE NOTE, CORRECTED 2026-06-30: NOW DOWNLOADED**
+- **VRAM:** 8–10 GB (Wan-Move estimate; see per-model baselines for others)
 - **Input:** Image + motion trajectories or driving video
 - **Output:** 5 sec @ 480p
-- **Baseline Workflow:** https://docs.comfy.org/tutorials/video/wan/wan-move
-- **Status:** Available; not in folder yet — decide if needed
+- **Baseline Workflow:** https://docs.comfy.org/tutorials/video/wan/wan-move (Wan-Move) — baselined as `baselines/baseline_wan_move.json`
+- **Status:** This line originally said "NOT Downloaded" — that is now WRONG. Confirmed present on disk: Wan2.2-TI2V-5B-Q5_K_M.gguf, wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors, Wan2.1-I2V-1.3B (diffusers format). None of these three specific variants have a baseline JSON yet as of this note — only Wan-Move does. Caught by kibitz round-2 panel review (Codex) 2026-06-30.
 
 ---
 
