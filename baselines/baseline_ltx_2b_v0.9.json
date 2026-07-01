@@ -161,7 +161,7 @@
         "Node name for S&R": "CheckpointLoaderSimple"
       },
       "widgets_values": [
-        "ltx-video-2b-v0.9.5.safetensors"
+        "ltx-video-2b-v0.9.safetensors"
       ]
     },
     {

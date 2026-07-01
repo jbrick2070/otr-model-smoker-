@@ -13,4 +13,6 @@ Key Nodes: CheckpointLoaderSimple (fp8), CLIPTextEncode, KSampler, VAEDecode, Em
 VRAM Estimate (RTX 5080): 7-9 GB (fp8 checkpoint variant)
 Quality Notes: No negative prompt needed (Flux doesn't require one). Chose the FP8 single-checkpoint version over the full Dev/Schnell split-loader version since it's the simplest official minimal path (one model file vs. four).
 Known Limitations: None observed. All node types are stock ComfyUI.
+
+CORRECTED 2026-06-30 (kibitz r2, Antigravity, verified against disk): the fetched official workflow originally pointed at flux1-schnell-fp8.safetensors, which does not exist on disk (only flux1-dev-fp8.safetensors is installed). Changed the CheckpointLoaderSimple widget value to flux1-dev-fp8.safetensors so this baseline actually loads. CAVEAT: Schnell and Dev are different checkpoints with different recommended sampling (Schnell: ~4 steps, no CFG; Dev: ~20-50 steps, uses CFG) — the KSampler widget values in this JSON were tuned for Schnell. The node GRAPH (loader->CLIP encode->KSampler->VAEDecode->SaveImage) is valid for comparing structural complexity, but if actually running this for image output, adjust steps/cfg for Dev before judging output quality.
 Verified: NO — pending load test in ComfyUI (Phase 3, next window)

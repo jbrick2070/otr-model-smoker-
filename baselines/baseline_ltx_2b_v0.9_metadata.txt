@@ -12,4 +12,6 @@ Output Nodes: ["SaveWEBM", "SaveAnimatedWEBP"]
 VRAM Estimate (RTX 5080): 4-6 GB
 Quality Notes: Real-time capable; descriptive prompts essential. Official example has more nodes (13) than the theoretical 5-7 node minimum quoted in the handoff spec, since ComfyUI's stock LTXV pipeline requires separate CLIP loader, VAE, sampler, and dual output (webm + webp preview) nodes.
 Known Limitations: None observed. All node types are stock ComfyUI (no custom node dependencies).
+
+CORRECTED 2026-06-30 (kibitz r2, Antigravity, verified against disk): the fetched official workflow pointed at ltx-video-2b-v0.9.5.safetensors, which does not exist on disk (only ltx-video-2b-v0.9.safetensors is installed — no ".5"). Changed the CheckpointLoaderSimple widget value to match. These are different point releases of the same 2B model; the node graph is unaffected either way.
 Verified: NO — pending load test in ComfyUI (Phase 3, next window)

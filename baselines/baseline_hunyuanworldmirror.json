@@ -47,10 +47,10 @@
       "mode": 0,
       "inputs": [],
       "outputs": [
-        {"name": "MODEL", "type": "MODEL", "links": [3]}
+        {"name": "MODEL", "type": "HWMIRROR_MODEL", "links": [3]}
       ],
       "properties": {"Node name for S&R": "LoadHunyuanWorldMirrorModel"},
-      "widgets_values": ["HunyuanWorld-Mirror.safetensors", "auto", "fp16"]
+      "widgets_values": ["C:/ComfyUI-Models/WorldMirror-V2/HY-WorldMirror-2.0/model.safetensors", "auto", "fp16", false]
     },
     {
       "id": 4,
@@ -61,7 +61,7 @@
       "order": 3,
       "mode": 0,
       "inputs": [
-        {"name": "model", "type": "MODEL", "link": 3},
+        {"name": "model", "type": "HWMIRROR_MODEL", "link": 3},
         {"name": "images", "type": "IMAGE", "link": 2}
       ],
       "outputs": [
@@ -93,13 +93,13 @@
         {"name": "filepath", "type": "STRING", "links": null}
       ],
       "properties": {"Node name for S&R": "SavePointCloud"},
-      "widgets_values": ["output/hwm_pointcloud.ply", "ply", 0]
+      "widgets_values": ["output/hwm_pointcloud.ply", "ply", 0.0, 1]
     }
   ],
   "links": [
     [1, 1, 0, 2, 0, "IMAGE"],
     [2, 2, 0, 4, 1, "IMAGE"],
-    [3, 3, 0, 4, 0, "MODEL"],
+    [3, 3, 0, 4, 0, "HWMIRROR_MODEL"],
     [4, 4, 2, 5, 0, "POINTS3D"]
   ],
   "groups": [],

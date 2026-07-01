@@ -270,7 +270,7 @@
         "ver": "0.3.23"
       },
       "widgets_values": [
-        "flux1-schnell-fp8.safetensors"
+        "flux1-dev-fp8.safetensors"
       ],
       "color": "#322",
       "bgcolor": "#533"

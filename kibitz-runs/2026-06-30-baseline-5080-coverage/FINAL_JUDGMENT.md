@@ -50,6 +50,17 @@ or on that to-do list. The real problems were with what's already in `baselines/
    offline-first." Flagged for Jeffrey — not fixed automatically since it's a
    content/scope decision, not a factual error. (Claude Code)
 
+## Round-2 late arrival: Antigravity's full review (finished after r2 was already synthesized)
+
+Antigravity's r2 review completed later than expected but landed a genuinely high-value catch by reading the ACTUAL installed `ComfyUI-HunyuanWorld-Mirror/nodes.py` source (not just its README) plus cross-checking every baseline's checkpoint filename against the real disk inventory. All claims verified before acting:
+
+- **4 baselines pointed at filenames that don't exist on disk** — `baseline_flux_gen1.json` (flux1-schnell-fp8 -> flux1-dev-fp8), `baseline_ltx_2b_v0.9.json` (v0.9.5 -> v0.9), and `baseline_hunyuan3d_v2_mv.json` (a real mismatch, see below). Fixed the first two directly (safe same-architecture checkpoint swaps); the third needed a judgment call, not a blind rename.
+- **`baseline_hunyuan3d_v2_mv.json` is a genuine model-variant mismatch, not a typo**: the JSON's non-multiview graph expects `hunyuan3d-dit-v2.safetensors`, but only the MULTIVIEW-trained `hunyuan3d-dit-v2-mv.safetensors` is on disk. Renaming would load MV-trained weights into a non-MV conditioning graph — technically loadable, likely degraded output. Flagged as an open decision in metadata rather than silently patched.
+- **`baseline_wan_move.json` needs weights that don't exist anywhere on disk** (the diffusion checkpoint and clip_vision_h.safetensors) — confirmed `clip_vision/` is empty. Not a fixable typo; flagged as blocked-on-download.
+- **`baseline_hunyuanworldmirror.json` (the hand-built one) had 3 real schema bugs**: wrong link type (MODEL should be HWMIRROR_MODEL), two nodes missing required widget values, and a model path that would trigger a needless 5GB download instead of using the local file. All fixed and verified against the actual installed node source.
+
+All JSON re-validated after edits (8/8 valid, zero dangling links) using a Python script run directly against the real Windows files via Desktop Commander — the Linux bash sandbox mount briefly showed phantom "Extra data" JSON errors on 2 files, which is the known mount-lag artifact (not real corruption), confirmed by reading the actual files and re-validating from the Windows side.
+
 ## Not fixed (out of scope for a coverage check, noted for later):
 
 - `COMPARATIVE_ANALYSIS.md` and `MODEL_AUDIT.md` still reference the old

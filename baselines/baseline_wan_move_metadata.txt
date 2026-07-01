@@ -12,4 +12,6 @@ Output Nodes: ["SaveVideo", "SaveVideo", "PreviewImage"]
 VRAM Estimate (RTX 5080): 8-10 GB
 Quality Notes: Generates 5-second 480p video with fine-grained point-level motion control via latent trajectory guidance, integrated into Wan-I2V-14B with no architecture changes. Node count (16) is higher than the ~6-7 node estimate in the spec because the official template includes both a distillation LoRA loader and dual save/preview outputs.
 Known Limitations: Requires lightx2v step-distill LoRA + umt5/clip_vision/vae support files in addition to the diffusion model.
-Verified: NO — pending load test in ComfyUI (Phase 3, next window)
+
+MISSING WEIGHTS CONFIRMED (kibitz r2, Antigravity, verified against disk 2026-06-30): neither Wan21-WanMove_fp8_scaled_e4m3fn_KJ.safetensors nor clip_vision_h.safetensors are present on disk (clip_vision/ folder is confirmed EMPTY). This workflow will fail to load or trigger an internet download on first run. This is a real download-required gap, not a filename typo — flagging rather than "fixing," since there's nothing local to point at instead. Cannot smoke-test until these are downloaded.
+Verified: NO — pending load test in ComfyUI (Phase 3, next window). BLOCKED on missing weights above.
