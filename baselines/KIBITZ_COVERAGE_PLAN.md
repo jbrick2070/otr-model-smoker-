@@ -60,6 +60,13 @@ and top-level model folders:
    elsewhere or if this workflow needs adjusting for single-expert use.
 3. **Wan2.1-I2V-1.3B** (diffusers format folder) - smallest Wan I2V variant,
    likely the cheapest VRAM footprint of any video model on disk. NOT baselined.
+   CAVEAT (kibitz r1, Claude Code panelist, confirmed via web search 2026-06-30):
+   this is a diffusers-format folder (config.json + sharded safetensors), not a
+   single checkpoint. ComfyUI's native Wan workflows load via UNETLoader from a
+   single safetensors/GGUF file; diffusers folders need the separate (deprecated)
+   DiffusersLoader node, which may not wire cleanly into WanImageToVideo-style
+   conditioning nodes. Verify loadability before treating this as "ready to
+   baseline" — may need conversion to a single-file checkpoint first.
 4. **LTX 2.3 distilled-1.1** (GGUF quantized: Q2_K/Q3_K_M/Q4_K_M, plus
    `ltx-2.3-22b-distilled-1.1_transformer_only_fp8_scaled.safetensors`, plus a
    matching LoRA `ltx-2.3-22b-distilled-lora-384-1.1.safetensors`) - this is a
